@@ -10,15 +10,18 @@ class scene
 public:
 	scene();
 	~scene();
-	//la idea aca es que se pase un numero que va a representar la scena en si, si estamos en el menu, en el juego , en las opciones, en el nivel 2 y asi 
-	void Update(int scene);
+	
+	void Inits();
+	void Update();
 private:
+	int sceneN;
+	int fontSize;
 
 	bool gameStart;
 	bool options;
 	bool pause;
 
-	Vector2 resolution;
+	Vector2 mousePos;
 
 	Texture2D backgroundTexture;
 	Texture2D buttonTexture;
@@ -31,7 +34,6 @@ private:
 	Rectangle optionButton;
 	Rectangle exitButton;
 
-	void Inits();
 	void Load();
 	void Inputs();
 };
