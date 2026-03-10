@@ -18,11 +18,3 @@ private:
 	Vector2 Vel;
 	Vector2 HitBox;
 };
-
-player::player()
-{
-}
-
-player::~player()
-{
-}

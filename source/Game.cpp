@@ -14,5 +14,11 @@ void game::Inits() {
 void game::Update(){
 	scene.Update();
 }
+void game::Run() {
+	ClearBackground(BLACK);
+	Update();
+}
 game::~game()
 {
+	CloseWindow();
+}

@@ -1,21 +1,17 @@
-#ifndef NDEBUG
-#include <vld.h> // Visual Leak Detector, útil en modo Debug para detectar fugas de memoria
-#endif
-
 #include "raylib.h"
+#include "Game.h"
 
-int main(void)
+int main()
 { 
+    game TpfinalMavi;
+
+    TpfinalMavi.Inits();
     while (!WindowShouldClose())
     {
         BeginDrawing();
-        ClearBackground(GREEN);
-
-
-    
+        TpfinalMavi.Run();
         EndDrawing();
     }
-    CloseWindow();
 
     return 0;
 }
