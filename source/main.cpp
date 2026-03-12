@@ -9,7 +9,14 @@ int main()
     while (!WindowShouldClose())
     {
         BeginDrawing();
+
         TpfinalMavi.Run();
+
+        if (!TpfinalMavi.Run()) {
+            EndDrawing();
+            break;
+        }
+
         EndDrawing();
     }
 

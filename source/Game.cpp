@@ -14,9 +14,16 @@ void game::Inits() {
 void game::Update(){
 	scene.Update();
 }
-void game::Run() {
+bool game::Run() {
 	ClearBackground(BLACK);
 	Update();
+	if (scene.ShouldExit())
+	{
+		return false;
+	}
+	else {
+		return true;
+	}
 }
 game::~game()
 {

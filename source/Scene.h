@@ -10,6 +10,9 @@ class scene
 public:
 	scene();
 	~scene();
+
+	bool ShouldExit();
+
 	
 	void Inits();
 	void Update();
@@ -20,6 +23,7 @@ private:
 	bool gameStart;
 	bool options;
 	bool pause;
+	bool exitGame;
 
 	Vector2 mousePos;
 

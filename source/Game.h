@@ -10,7 +10,7 @@ public:
 	~game();
 
 	void Inits();
-	void Run();
+	bool Run();
 	
 private:
 	//esto no se si lo voy a usar aca

@@ -8,9 +8,24 @@ scene::scene()
 	gameStart = false;
 	options = false;
 	pause = false;
+	exitGame = false;
 
 	mousePos = GetMousePosition();
+	//a todo esto le pongo un valor y despues lo inicializo en inits para que se carge una vez creada la ventana
+	backgroundTexture = { 0 };
+	buttonTexture = { 0 };
 
+	mapTexture1 = { 0 };
+	mapTexture2 = { 0 };
+	mapTexture3 = { 0 };
+	mapTexture4 = { 0 };
+    
+	playButton = {100,100,100,100 };
+	optionButton = { 100,100,100,100 };
+	exitButton = { 100,100,100,100 };
+}
+//aca solo inicializar entidades, pantalla y demas va en game
+void scene::Inits() {
 	backgroundTexture = LoadTexture("Assets/Sprites/Map/Ab_D.png");// es para poner algo despues cambiarlo // no se cual es el error aca dsp corrijo
 	buttonTexture = LoadTexture("Assets/Sprites/Others/StoneButton.png");
 
@@ -18,13 +33,7 @@ scene::scene()
 	mapTexture2 = LoadTexture("Assets/Sprites/Map/Ab_I.png");
 	mapTexture3 = LoadTexture("Assets/Sprites/Map/Ar_D.png");
 	mapTexture4 = LoadTexture("Assets/Sprites/Map/Ar_I.png");
-	//creo que lo que me esta tirando error aca es hacer los calculos de los botones en el constructor, los voy a mover a inits
-	playButton = {100,100,100,100 };
-	optionButton = { 100,100,100,100 };
-	exitButton = { 100,100,100,100 };
-}
-//aca solo inicializar entidades, pantalla y demas va en game
-void scene::Inits() {
+
 	playButton = { (float)GetScreenWidth() / 2 - buttonTexture.width / 2,(float)GetScreenHeight() / 2 - buttonTexture.height, (float)buttonTexture.width, (float)buttonTexture.height };
 	optionButton = { (float)GetScreenWidth() / 2 - buttonTexture.width / 2, (float)GetScreenHeight() / 2 - buttonTexture.height + 100, (float)buttonTexture.width, (float)buttonTexture.height };
 	exitButton = { (float)GetScreenWidth() / 2 - buttonTexture.width / 2, (float)GetScreenHeight() / 2 - buttonTexture.height + 200, (float)buttonTexture.width, (float)buttonTexture.height };
@@ -50,7 +59,24 @@ void scene::Load() {
 			tempColor1 = RAYWHITE;
 		}
 		DrawText("Play", GetScreenWidth() /2 - buttonTexture.width / 2 +fontSize/2, playButton.y+playButton.height/2-fontSize/2,fontSize,tempColor1);//esto no se si lo centre bien, me enterare cuando lo vea
-
+		//boton de options 
+		DrawTextureEx(buttonTexture, { optionButton.x,optionButton.y }, 0, 1, RAYWHITE);
+		if (mousePos.x >= optionButton.x && mousePos.y >= optionButton.y && mousePos.x <= optionButton.x + optionButton.width && mousePos.y <= optionButton.y + optionButton.height) {
+			tempColor1 = BLACK;
+		}
+		else {
+			tempColor1 = RAYWHITE;
+		}
+		DrawText("Options", GetScreenWidth() / 2 - buttonTexture.width / 2 + fontSize / 2, optionButton.y + optionButton.height / 2 - fontSize / 2, fontSize, tempColor1);//esto no se si lo centre bien x2
+		//boton de exit
+		DrawTextureEx(buttonTexture, { exitButton.x,exitButton.y }, 0, 1, RAYWHITE);
+		if (mousePos.x >= exitButton.x && mousePos.y >= exitButton.y && mousePos.x <= exitButton.x + exitButton.width && mousePos.y <= exitButton.y + exitButton.height) {
+			tempColor1 = BLACK;
+		}
+		else {
+			tempColor1 = RAYWHITE;
+		}
+		DrawText("Exit", GetScreenWidth() / 2 - buttonTexture.width / 2 + fontSize / 2, exitButton.y + exitButton.height / 2 - fontSize / 2, fontSize, tempColor1);//esto no se si lo centre bien, me enterare cuand
 		break;
 	case 2:
 
@@ -77,9 +103,13 @@ void scene::Inputs() {
 		//exitbutton act (todavia no se si va aca pero de ultima dsp lo cambio)
 		if (mousePos.x >= exitButton.x && mousePos.y >= exitButton.y && mousePos.x <= exitButton.x + exitButton.width && mousePos.y <= exitButton.y + exitButton.height && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 		{
-
+			exitGame = true;
 		}
 	}
+}
+bool scene::ShouldExit()
+{
+	return exitGame;
 }
 void scene::Update() {
 	Inputs();
