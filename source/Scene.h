@@ -20,6 +20,9 @@ private:
 	int sceneN;
 	int fontSize;
 
+	int musicVolume;
+	int fxVolume;
+
 	bool gameStart;
 	bool options;
 	bool pause;
@@ -37,6 +40,10 @@ private:
 	Rectangle playButton;
 	Rectangle optionButton;
 	Rectangle exitButton;
+
+	Music menuMusic;
+	Music gameMusic;
+
 
 	void Load();
 	void Inputs();

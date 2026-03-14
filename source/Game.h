@@ -13,10 +13,6 @@ public:
 	bool Run();
 	
 private:
-	//esto no se si lo voy a usar aca
-	float musicVolume;
-	float fxVolume;
-	//
 	void Update();
 	void Inputs();
 

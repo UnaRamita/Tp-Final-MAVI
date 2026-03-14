@@ -1,13 +1,12 @@
 #include "Game.h"
 game::game()
 {
-	fxVolume = 50;
-	musicVolume = 50;
 }
 
 void game::Inits() {
 	InitWindow(1920,1080,"Tp Final MAVI");
 	SetTargetFPS(60);
+	InitAudioDevice();
 
 	scene.Inits();
 }
@@ -27,5 +26,6 @@ bool game::Run() {
 }
 game::~game()
 {
+	CloseAudioDevice();
 	CloseWindow();
 }
